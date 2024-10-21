@@ -131,7 +131,7 @@ def delete_datum_by_id(id: int) -> Response:
 
 @main_bp.route("/data/filter/<string:lat>/<string:long>", methods=["GET"])
 def get_filtered_data(lat: str, long: str) -> Response:
-    """Filter the dataset based on latitude and longitude."""
+    """Filter the dataset based on latitude and longitude up to 1e-9 floating point precision."""
     try:
         # convert to float as negative not handled natively
         lat = float(lat)

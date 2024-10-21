@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+
 import os
 
 
@@ -26,7 +28,10 @@ class DataSet:
         self.df = self.df.drop(id)
 
     def filter_data(self, lat: float, lon: float) -> str:
-        filtered_df = self.df[(self.df["lat"] == lat) & (self.df["lon"] == lon)]
+        filtered_df = self.df[
+            np.isclose(self.df["lat"], lat, atol=1e-9) &
+            np.isclose(self.df["lon"], lon, atol=1e-9)
+        ]
         df_with_id = filtered_df.reset_index().rename(columns={"index": "id"})
         return df_with_id.to_json(orient="records")
 
