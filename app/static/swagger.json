@@ -1,0 +1,255 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Air Quality API",
+      "description": "API for managing and retrieving data related to PM2.5 statistics.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:5000",
+        "description": "Local server"
+      }
+    ],
+    "paths": {
+      "/data": {
+        "get": {
+          "summary": "Retrieve all available data",
+          "responses": {
+            "200": {
+              "description": "A list of all data entries",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "string",
+                    "example": "JSON-formatted data entries"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          }
+        },
+        "post": {
+          "summary": "Add a new data entry",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "example": -44.355
+                    },
+                    "lon": {
+                      "type": "number",
+                      "example": -176.255005
+                    },
+                    "gwrpm25": {
+                      "type": "number",
+                      "example": 6.2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Successfully created a new data entry"
+            },
+            "400": {
+              "description": "Invalid input"
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          }
+        }
+      },
+      "/data/{id}": {
+        "get": {
+          "summary": "Fetch a specific datum by its ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Data for the given ID",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "example": {
+                      "id": 1,
+                      "lat": -44.355,
+                      "lon": -176.255005,
+                      "gwrpm25": 6.2
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Item not found"
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          }
+        },
+        "put": {
+          "summary": "Update an existing data entry",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "example": -44.355
+                    },
+                    "lon": {
+                      "type": "number",
+                      "example": -176.255005
+                    },
+                    "gwrpm25": {
+                      "type": "number",
+                      "example": 6.2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully updated the data entry"
+            },
+            "404": {
+              "description": "Entry not found"
+            },
+            "400": {
+              "description": "Invalid input"
+            },
+            "500": {
+              "description": "Internal error"
+          }
+        }
+      },
+        "delete": {
+          "summary": "Delete a data entry by ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully deleted the data entry"
+            },
+            "404": {
+              "description": "Entry not found"
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          }
+        }
+      },
+      "/data/filter/{lat}/{long}": {
+        "get": {
+          "summary": "Filter the dataset based on latitude and longitude",
+          "parameters": [
+            {
+              "name": "lat",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": "-44.355"
+              }
+            },
+            {
+              "name": "long",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "example": "-176.255005"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Filtered data based on the provided latitude and longitude"
+            },
+            "400": {
+              "description": "Invalid latitude or longitude format"
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          }
+        }
+      },
+      "/data/stats": {
+        "get": {
+          "summary": "Provide basic statistics (count, average PM2.5, min, max) across the dataset",
+          "responses": {
+            "200": {
+              "description": "Basic statistics for the dataset",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "example": {
+                      "count": 100,
+                      "average": 12.5,
+                      "min": 5.2,
+                      "max": 20.3
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          }
+        }
+      }
+    }
+  }
+  
