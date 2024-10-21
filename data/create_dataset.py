@@ -4,6 +4,7 @@ import numpy as np
 
 file_name = "./data/sdei-global-annual-gwr-pm2-5-modis-misr-seawifs-viirs-aod-v5-gl-04-2000-netcdf/sdei-global-annual-gwr-pm2-5-modis-misr-seawifs-viirs-aod-v5-gl-04-2000-netcdf.nc"
 
+
 def create_dataset():
     dataset = xr.open_dataset(file_name, chunks={"latitude": 100, "longitude": 1})
 
@@ -38,6 +39,5 @@ def create_dataset():
     final_df.to_parquet("./app/pm25_data_final.parquet", index=False)
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     create_dataset()
-
