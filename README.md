@@ -76,12 +76,13 @@ coverage report
 e.g.
 ----------------------------------------------------------
 app/__init__.py                           19      0   100%
-app/data_set.py                           10      0   100%
-app/routes.py                             22      0   100%
-tests/functional/test_routes_func.py      51      0   100%
-tests/unit/test_data_set.py               25      0   100%
+app/data_set.py                           24      0   100%
+app/logger.py                             19      1    95%
+app/routes.py                             87      3    97%
+tests/functional/test_routes_func.py     176      0   100%
+tests/unit/test_data_set.py               54      0   100%
 ----------------------------------------------------------
-TOTAL                                    127      0   100%
+TOTAL                                    379      4    99%
 ```
 
 
