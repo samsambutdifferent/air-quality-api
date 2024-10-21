@@ -6,6 +6,3 @@ __pycache__
 .mypy_cache
 logs/*
 .coverage
-
-*/sdei-global-annual-gwr-pm2-5-modis-misr-seawifs-viirs-aod-v5-gl-04-2000-geotiff/*
-*/sdei-global-annual-gwr-pm2-5-modis-misr-seawifs-viirs-aod-v5-gl-04-2000-netcdf/*
