@@ -1,4 +1,4 @@
-# isryan-test-challenge
+# air-quality-api
 
 Thank you for taking the time to review my submission, below please see setup and run instructions, overview of the architecture, comments on technical choices as well as the answer to the required question. I have tried to lay the project out in a way that is clear and extendable.
 
